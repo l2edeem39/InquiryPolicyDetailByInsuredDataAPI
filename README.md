@@ -1,0 +1,2 @@
+# InquiryPolicyDetailByInsuredDataAPI
+InquiryPolicyDetailByInsuredDataAPI
