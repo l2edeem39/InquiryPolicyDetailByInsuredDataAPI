@@ -15,6 +15,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Log
         {
             public const int Success = 200;
             public const int Error = 500;
+            public const int NotFound = 404;
+            public const int Code400 = 404;
         }
         public class SystemStatusCode
         {

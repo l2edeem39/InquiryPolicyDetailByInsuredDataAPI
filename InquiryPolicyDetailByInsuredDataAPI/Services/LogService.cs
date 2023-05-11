@@ -18,7 +18,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
 
         public static string GetConnectionString()
         {
-            return _configuration.GetConnectionString("TESTDB");
+            return _configuration.GetConnectionString("DbLog");
         }
 
         public static async Task<int> LogInformation(LogModel model)
@@ -112,9 +112,9 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             return result;
         }

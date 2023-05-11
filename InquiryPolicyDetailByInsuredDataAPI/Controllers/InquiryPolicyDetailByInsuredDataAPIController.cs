@@ -19,11 +19,11 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Controllers
     {
         ResponseModel response = new ResponseModel();
 
-        private readonly IRepository _repoService;
+        private readonly IInquiryPolicyDetailService _service;
         private readonly ILogService _logService;
-        public InquiryPolicyDetailByInsuredDataAPIController(IRepository repository, ILogService log)
+        public InquiryPolicyDetailByInsuredDataAPIController(IInquiryPolicyDetailService service, ILogService log)
         {
-            _repoService = repository;
+            _service = service;
             _logService = log;
         }
         [HttpPost("api/1.0/SearchInsuredData")]
@@ -32,14 +32,15 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Controllers
             try
             {
                 var responses = new List<PolicyDetailByInsuredData>();
-                //var response = await _repoService.GetProductByIdAsync(Id);
-                var result = await _repoService.GetCarcolorCodeListAsync();
-                //var response = await _repoService.GetPolicyDetailByInsuredDataAsync();
-                //var dd = aaa.Where(x => x.carcolor_name == "").Select(x=>x.carcolor_name_e).ToList();
-                this.ControllerContext.RouteData.Values["action"].ToString();
-                if (response == null)
+                var result = await _service.GetPolicyDetailByInsuredDataAsync();
+
+                if (result == null)
                 {
-                    return null;
+                    response.ErrorCode = CodeStatus.Code400.ToString();
+                    response.ErrorMessage = "Field Not Found";
+                    response.Status = "1";
+                    _logService.WriteLog(LogEnum.Level.Information, request, response, CodeStatus.Code400, this.ControllerContext.RouteData.Values["controller"].ToString(), this.ControllerContext.RouteData.Values["action"].ToString());
+                    return StatusCode(CodeStatus.Code400, new { response, data = new List<PolicyDetailByInsuredData>() });
                 }
 
                 response.ErrorCode = "";

@@ -28,6 +28,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI
             //add Service
             services.AddTransient<ILogService, LogService>();
             services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IInquiryPolicyDetailService, InquiryPolicyDetailService>();
             services.AddDbContext<DbContextClass>();
 
             services.AddSwaggerGen(c =>

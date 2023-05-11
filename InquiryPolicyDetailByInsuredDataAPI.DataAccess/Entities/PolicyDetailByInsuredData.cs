@@ -104,14 +104,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string Remark10 {get; set;}
 		public string Transtype {get; set;}
 		public string Reason {get; set;}
-		public string product_code {get; set;}
 		public int IsEndorse { get; set; }
 		public DateTime CreateDate { get; set; }
-		public string  pol_yr  {get; set;}
-		public string pol_br {get; set;}
-		public string pol_no {get; set;}
-		public string pol_pre {get; set;}
-		public string plan_name_eng {get; set;}
-		public int ins_seq { get; set; }
 	}
 }
