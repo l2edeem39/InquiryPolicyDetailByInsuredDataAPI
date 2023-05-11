@@ -19,16 +19,18 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString("VmiDB1"));
+            options.UseSqlServer(Configuration.GetConnectionString("r4ad01"));
         }
 
         public DbSet<InsuredData> InsuredData { get; set; }
-        public DbSet<CarcolorCode> CarcolorCode { get; set; }
+        public DbSet<ProductFch> ProductFch { get; set; }
+        public DbSet<PolicyDetailByInsuredData> PolicyDetailByInsuredData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<InsuredData>(entity => entity.HasNoKey());
-            modelBuilder.Entity<CarcolorCode>(entity => entity.HasNoKey());
+            modelBuilder.Entity<ProductFch>(entity => entity.HasNoKey());
+            modelBuilder.Entity<PolicyDetailByInsuredData>(entity => entity.HasNoKey());
         }
     }
 }

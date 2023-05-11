@@ -9,7 +9,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
 {
     public interface IRepository
     {
-        public Task<List<CarcolorCode>> GetCarcolorCodeListAsync();
+        public Task<List<ProductFch>> GetCarcolorCodeListAsync();
         public Task<IEnumerable<InsuredData>> GetProductByIdAsync(int Id);
+        public Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync();
     }
 }

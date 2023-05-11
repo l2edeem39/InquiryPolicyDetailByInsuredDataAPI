@@ -1,5 +1,8 @@
 using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context;
 using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository;
+using InquiryPolicyDetailByInsuredDataAPI.Services;
+using InquiryPolicyDetailByInsuredDataAPI.Services.Interface;
+using InquiryPolicyDetailByInsuredDataAPI.Share.EnvironmentShared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +26,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI
             services.AddControllers();
 
             //add Service
+            services.AddTransient<ILogService, LogService>();
             services.AddTransient<IRepository, Repository>();
             services.AddDbContext<DbContextClass>();
 
@@ -58,6 +62,9 @@ namespace InquiryPolicyDetailByInsuredDataAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "InquiryPolicyDetailByInsuredDataAPI");
                 c.RoutePrefix = string.Empty;
             });
+
+            EnvironmentShared._configuration = Configuration;
+            LogService._configuration = Configuration;
         }
     }
 }

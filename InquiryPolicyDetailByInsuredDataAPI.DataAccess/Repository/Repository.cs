@@ -17,18 +17,30 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<List<CarcolorCode>> GetCarcolorCodeListAsync()
+        public async Task<List<ProductFch>> GetCarcolorCodeListAsync()
         {
-            return await _dbContext.CarcolorCode.ToListAsync();
+            return await _dbContext.ProductFch.ToListAsync();
         }
         public async Task<IEnumerable<InsuredData>> GetProductByIdAsync(int InsuredDataId)
         {
             var param = new SqlParameter("@InsuredDataId", InsuredDataId);
 
-            var productDetails = await Task.Run(() => _dbContext.InsuredData
+            var result = await Task.Run(() => _dbContext.InsuredData
                             .FromSqlRaw(@"exec InsuredDataByID @InsuredDataId", param).ToListAsync());
 
-            return productDetails;
+            return result;
+        }
+        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync()
+        {
+            var polyr = new SqlParameter("@polyr", "23");
+            var polbr = new SqlParameter("@polbr", "181");
+            var polpre = new SqlParameter("@polpre", "581");
+            var polno = new SqlParameter("@polno", "000015");
+
+            var result = await Task.Run(() => _dbContext.PolicyDetailByInsuredData
+                            .FromSqlRaw(@"exec sp_TPA_VIB {0},{1},{2},{3}", polyr, polbr, polpre, polno).ToListAsync());
+
+            return result;
         }
     }
 }
