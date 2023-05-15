@@ -32,8 +32,10 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
         }
         public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolNo, string CardId)
         {
+            var paramPolNo = new SqlParameter("@policyno", PolNo);
+            var paramCardId = new SqlParameter("@cardid", CardId);
             var result = await Task.Run(() => _dbContext.PolicyDetailByInsuredData
-                            .FromSqlRaw(@"exec sp_TPA_VIB {0},{1}", PolNo, CardId).ToListAsync());
+                            .FromSqlRaw(@"exec sp_TPA_VIB @policyno, @cardid", paramPolNo, paramCardId).ToListAsync());
             
             return result;
         }
