@@ -1,5 +1,6 @@
 ﻿using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities;
 using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository;
+using InquiryPolicyDetailByInsuredDataAPI.Models;
 using InquiryPolicyDetailByInsuredDataAPI.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,12 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             _repo = repo;
         }
         #endregion
-        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync()
+        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(RequestInquiryModel request)
         {
             try
             {
                 var result = new List<PolicyDetailByInsuredData>();
-                result = await _repo.GetPolicyDetailByInsuredDataAsync();
+                result = await _repo.GetPolicyDetailByInsuredDataAsync(request.PolicyNo, request.CardId);
                 //resultList = result.Where(x => x.subclass_code == "30").Select(x => new { x.product_code, x.product_name, x.subclass_code }).ToList();
                 return result;
             }

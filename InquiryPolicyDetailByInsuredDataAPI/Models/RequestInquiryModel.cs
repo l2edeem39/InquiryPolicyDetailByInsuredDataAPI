@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace InquiryPolicyDetailByInsuredDataAPI.Models
+﻿namespace InquiryPolicyDetailByInsuredDataAPI.Models
 {
     public class RequestInquiryModel
     {
-        public string input { get; set; }
+        public string PolicyNo { get; set; }
+        public string CardId { get; set; }
     }
 }

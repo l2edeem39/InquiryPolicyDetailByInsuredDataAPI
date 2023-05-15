@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace InquiryPolicyDetailByInsuredDataAPI.Services
@@ -15,13 +16,13 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
     {
         public static IConfiguration _configuration;
         DateTime requestDate;
-
+        SqlConnection connection;
         public static string GetConnectionString()
         {
             return _configuration.GetConnectionString("DbLog");
         }
 
-        public static async Task<int> LogInformation(LogModel model)
+        public async Task<int> LogInformation(LogModel model)
         {
             int insert_row = -1;
             try
@@ -34,7 +35,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             }
             return insert_row;
         }
-        public static async Task<int> LogWarnning(LogModel model)
+        public async Task<int> LogWarnning(LogModel model)
         {
             int insert_row = -1;
             try
@@ -47,7 +48,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             }
             return insert_row;
         }
-        public static async Task<int> LogError(LogModel model)
+        public async Task<int> LogError(LogModel model)
         {
             int insert_row = -1;
             try
@@ -60,7 +61,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             }
             return insert_row;
         }
-        public static async Task<int> LogSuccess(LogModel model)
+        public async Task<int> LogSuccess(LogModel model)
         {
             int insert_row = -1;
             try
@@ -73,7 +74,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             }
             return insert_row;
         }
-        private static async Task<int> Insert(LogEnum.Level level, LogModel model)
+        private async Task<int> Insert(LogEnum.Level level, LogModel model)
         {
             int result = 0;
             try
@@ -101,20 +102,32 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
                 new SqlParameter("@ProjectCode",string.IsNullOrEmpty(model.Application)?string.Empty:model.Application),
                 new SqlParameter("@HttpStatus",string.IsNullOrEmpty(model.HttpStatus)?string.Empty:model.HttpStatus)
                 };
-                using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+                using (connection = new SqlConnection(GetConnectionString()))
                 {
-                    await conn.OpenAsync();
-                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.CommandType = System.Data.CommandType.Text;
                         command.Parameters.AddRange(param);
                         result = await command.ExecuteNonQueryAsync();
                     }
+                    await connection.CloseAsync();
                 }
             }
             catch (Exception)
             {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    await connection.CloseAsync();
+                }
                 throw;
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    await connection.CloseAsync();
+                }
             }
             return result;
         }

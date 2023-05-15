@@ -1,8 +1,10 @@
+using InquiryPolicyDetailByInsuredDataAPI.Authentication;
 using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context;
 using InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository;
 using InquiryPolicyDetailByInsuredDataAPI.Services;
 using InquiryPolicyDetailByInsuredDataAPI.Services.Interface;
 using InquiryPolicyDetailByInsuredDataAPI.Share.EnvironmentShared;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,16 +27,44 @@ namespace InquiryPolicyDetailByInsuredDataAPI
         {
             services.AddControllers();
 
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
             //add Service
             services.AddTransient<ILogService, LogService>();
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IInquiryPolicyDetailService, InquiryPolicyDetailService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddDbContext<DbContextClass>();
 
+            #region Configure Swagger  
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InquiryPolicyDetailByInsuredDataAPI", Version = "v1" });
+                c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic",
+                    In = ParameterLocation.Header,
+                    Description = "Basic Authorization header using the Bearer scheme."
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "basic"
+                                }
+                            },
+                            new string[] {}
+                    }
+                });
             });
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +75,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

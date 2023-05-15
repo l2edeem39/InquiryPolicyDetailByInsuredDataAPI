@@ -11,6 +11,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
     {
         public Task<List<ProductFch>> GetCarcolorCodeListAsync();
         public Task<IEnumerable<InsuredData>> GetProductByIdAsync(int Id);
-        public Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync();
+        public Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolNo, string CardId);
+        public bool GetCredentialAsync(string user, string password);
     }
 }

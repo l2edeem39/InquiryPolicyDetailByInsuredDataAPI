@@ -30,17 +30,35 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
 
             return result;
         }
-        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync()
+        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolNo, string CardId)
         {
-            var polyr = new SqlParameter("@polyr", "23");
-            var polbr = new SqlParameter("@polbr", "181");
-            var polpre = new SqlParameter("@polpre", "581");
-            var polno = new SqlParameter("@polno", "000015");
-
             var result = await Task.Run(() => _dbContext.PolicyDetailByInsuredData
-                            .FromSqlRaw(@"exec sp_TPA_VIB {0},{1},{2},{3}", polyr, polbr, polpre, polno).ToListAsync());
-
+                            .FromSqlRaw(@"exec sp_TPA_VIB {0},{1}", PolNo, CardId).ToListAsync());
+            
             return result;
+        }
+        public bool GetCredentialAsync(string user, string password)
+        {
+            //var result = _dbContext.User.Where(x => x.UserName.Trim().ToString() == user.Trim().ToString() && x.Password.Trim().ToString() == password.Trim().ToString()).ToList();
+            var result = new List<User>()
+            {
+                new User()
+                {
+                    UserName = "usertest",
+                    Password = "123456"
+                }
+            };
+
+            result = result.Where(x => x.UserName.Trim().ToString() == user.Trim().ToString() && x.Password.Trim().ToString() == password.Trim().ToString()).ToList();
+
+            if (result.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
