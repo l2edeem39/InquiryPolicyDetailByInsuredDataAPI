@@ -24,7 +24,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string PRINCIPLE_REFERENCE_FIELD_NAME { get; set; }
 		public string CITIZEN_ID { get; set; }
 		public string OTHER_ID { get; set; }
-		public DateTime DATE_OF_BIRTH { get; set; }
+		public string DATE_OF_BIRTH { get; set; }
 		public string AGE { get; set; }
 		public string BUILDING_NO { get; set; }
 		public string VILLAGE_NO { get; set; }
@@ -42,46 +42,46 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string EMAIL { get; set; }
 		public string FAX_NO { get; set; }
 		public string STAFF_NO { get; set; }
-		public DateTime JOIN_DATE { get; set; }
-		public DateTime EMPLOYMENT_DATE { get; set; }
+		public string JOIN_DATE { get; set; }
+		public string EMPLOYMENT_DATE { get; set; }
 		public string APPLICATION_NUMBER { get; set; }
 		public string POLICY_NUMBER { get; set; }
 		public string Previous_POLICY_NUMBER { get; set; }
 		public decimal POLICY_YEAR { get; set; }
-		public DateTime POLICY_ISSUE_Date { get; set; }
-		public DateTime POLICY_EXPIRED_DATE { get; set; }
+		public string POLICY_ISSUE_Date { get; set; }
+		public string POLICY_EXPIRED_DATE { get; set; }
 		public string POLICY_STATUS { get; set; }
-		public DateTime RENEWAL_DATE { get; set; }
+		public string RENEWAL_DATE { get; set; }
 		public string CERTIFICATE_NO { get; set; }
 		public string INSURER_CARD_NO {get; set;}
 		public string INSURER_PREVIOUS_CARD_NO { get; set; }
-		public DateTime Member_Terminate_Date { get; set; }
-		public DateTime Member_Reinstatement_Date { get; set; }
-		public DateTime Member_Suspension_Date { get; set; }
-		public DateTime Member_Suspension_To_Date { get; set; }
+		public string Member_Terminate_Date { get; set; }
+		public string Member_Reinstatement_Date { get; set; }
+		public string Member_Suspension_Date { get; set; }
+		public string Member_Suspension_To_Date { get; set; }
 		public string PLAN { get; set; }
-		public DateTime PLAN_ISSUE_DATE { get; set; }
-		public DateTime PLAN_CONTRACT_DATE { get; set; }
-		public DateTime PLAN_EFFECTIVE_FROM_DATE { get; set; }
-		public DateTime PLAN_EFFECTIVE_TO_DATE { get; set; }
-		public DateTime PLAN_PAID_DATE { get; set; }
-		public DateTime PLAN_Paid_to_date { get; set; }
-		public DateTime PLAN_Next_Due_Date { get; set; }
+		public string PLAN_ISSUE_DATE { get; set; }
+		public string PLAN_CONTRACT_DATE { get; set; }
+		public string PLAN_EFFECTIVE_FROM_DATE { get; set; }
+		public string PLAN_EFFECTIVE_TO_DATE { get; set; }
+		public string PLAN_PAID_DATE { get; set; }
+		public string PLAN_Paid_to_date { get; set; }
+		public string PLAN_Next_Due_Date { get; set; }
 		public string PLAN_Status { get; set; }
 		public string PLAN_RIDER { get; set; }
-		public DateTime RIDER_ISSUE_DATE { get; set; }
-		public DateTime RIDER_CONTRACT_DATE { get; set; }
-		public DateTime RIDER_EFFECTIVE_FROM_DATE { get; set; }
-		public DateTime RIDER_EFFECTIVE_TO_DATE { get; set; }
-		public DateTime RIDER_Terminate_Date { get; set; }
-		public DateTime RIDER_Reinstatement_Date { get; set; }
-		public DateTime Rider_Suspension_Date { get; set; }
-		public DateTime RIDER_PAID_DATE { get; set; }
-		public DateTime RIDER_Paid_to_date { get; set; }
-		public DateTime RIDER_Next_Due_Date { get; set; }
+		public string RIDER_ISSUE_DATE { get; set; }
+		public string RIDER_CONTRACT_DATE { get; set; }
+		public string RIDER_EFFECTIVE_FROM_DATE { get; set; }
+		public string RIDER_EFFECTIVE_TO_DATE { get; set; }
+		public string RIDER_Terminate_Date { get; set; }
+		public string RIDER_Reinstatement_Date { get; set; }
+		public string Rider_Suspension_Date { get; set; }
+		public string RIDER_PAID_DATE { get; set; }
+		public string RIDER_Paid_to_date { get; set; }
+		public string RIDER_Next_Due_Date { get; set; }
 		public string RIDER_Status { get; set; }
-		public DateTime LIFE_CONTRACT_DATE { get; set; }
-		public DateTime VALIDITY_DATE { get; set; }
+		public string LIFE_CONTRACT_DATE { get; set; }
+		public string VALIDITY_DATE { get; set; }
 		public string CONDITION_DETAIL { get; set; }
 		public string PREMIUM_FREQUENCY { get; set; }
 		public decimal MEMBER_PREMIUM { get; set; }
@@ -109,8 +109,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string REMARK_9 { get; set; }
 		public string REMARK_10 { get; set; }
 		public string Insurer_Action_Type { get; set; }
-		public DateTime Insurer_Update_Date { get; set; }
-		public DateTime Cancel_Date { get; set; }
+		public string Insurer_Update_Date { get; set; }
+		public string Cancel_Date { get; set; }
 		public string PATTERN_CODE { get; set; }
 		public string Sponsor { get; set; }
 		public string Reason { get; set; }
@@ -118,7 +118,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string Broker { get; set; }
 		public string CustomerGroup { get; set; }
 		public string VDBNO { get; set; }
-		public DateTime Insurer_Export_Date { get; set; }
+		public string Insurer_Export_Date { get; set; }
 		public string Sub_Sales_Chanel { get; set; }
 		public string ENDORSE_NO { get; set; }
 		public string END_TYPE { get; set; }
@@ -133,7 +133,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 		public string Coverage_Option { get; set; }
 		public string Progressive_Code { get; set; }
 		public string Coverage_Status { get; set; }
-		public DateTime Date_of_Birth_Payer { get; set; }
+		public string Date_of_Birth_Payer { get; set; }
 		public string Gender_Payer { get; set; }
 		public string Address1_Payer { get; set; }
 		public string Address2_Payer { get; set; }
