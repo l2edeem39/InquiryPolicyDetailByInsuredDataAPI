@@ -8,12 +8,12 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 {
     public class PolicyDetailByInsuredData
     {
-		public decimal SEQUENCE {get; set;}
-		public string COMPANY_NAME {get; set;}
-		public string MEMBER_STATUS {get; set;}
-		public string TITLE { get; set;}
-		public string NAME_THAI {get; set;}
-		public string SURNAME_THAI {get; set;}
+		public decimal SEQUENCE { get; set; }
+		public string COMPANY_NAME { get; set; }
+		public string MEMBER_STATUS { get; set; }
+		public string TITLE { get; set; }
+		public string NAME_THAI { get; set; }
+		public string SURNAME_THAI { get; set; }
 		public string NAME_ENG { get; set; }
 		public string SURNAME_ENG { get; set; }
 		public string GENDER { get; set; }
