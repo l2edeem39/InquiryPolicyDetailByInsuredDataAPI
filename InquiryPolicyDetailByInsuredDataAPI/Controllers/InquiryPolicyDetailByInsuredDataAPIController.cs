@@ -35,27 +35,6 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Controllers
             {
                 var responses = new List<PolicyDetailByInsuredData>();
 
-                #region Validate Request
-                if (string.IsNullOrEmpty(request.PolicyNo.Trim().ToString()) || string.IsNullOrEmpty(request.CardId.Trim().ToString()))
-                {
-                    if (string.IsNullOrEmpty(request.PolicyNo.Trim().ToString()) && string.IsNullOrEmpty(request.CardId.Trim().ToString()))
-                    {
-                        response.ErrorMessage = String.Format("{0}, {1}", MessageError.PolicyNo_NotFound, MessageError.CardId_NotFound);
-                    }
-                    else if (string.IsNullOrEmpty(request.PolicyNo.Trim().ToString()))
-                    {
-                        response.ErrorMessage = MessageError.PolicyNo_NotFound;
-                    }
-                    else if (string.IsNullOrEmpty(request.CardId.Trim().ToString()))
-                    {
-                        response.ErrorMessage = MessageError.CardId_NotFound;
-                    }
-                    response.StatusCode = StatusCodes.ValidateFail;
-                    _logService.WriteLogError(request, response, new Exception(), StatusCodes.ValidateFail, controller, action);
-                    return StatusCode(StatusCodes.ValidateFail, new { response, data = new List<PolicyDetailByInsuredData>() });
-                }
-                #endregion
-
                 #region Call Service
                 var result = await _service.GetPolicyDetailByInsuredDataAsync(request);
 

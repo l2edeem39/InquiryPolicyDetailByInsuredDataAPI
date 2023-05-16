@@ -23,7 +23,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             try
             {
                 var result = new List<PolicyDetailByInsuredData>();
-                result = await _repo.GetPolicyDetailByInsuredDataAsync(request.PolicyNo, request.CardId);
+                result = await _repo.GetPolicyDetailByInsuredDataAsync(request.PolicyNumber, request.IdentityNumber, request.InsuredTitle, request.InsuredFirstName, request.InsuredLastName);
                 //resultList = result.Where(x => x.subclass_code == "30").Select(x => new { x.product_code, x.product_name, x.subclass_code }).ToList();
                 return result;
             }

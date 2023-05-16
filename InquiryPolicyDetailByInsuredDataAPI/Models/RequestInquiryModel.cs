@@ -1,8 +1,23 @@
-﻿namespace InquiryPolicyDetailByInsuredDataAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InquiryPolicyDetailByInsuredDataAPI.Models
 {
     public class RequestInquiryModel
     {
-        public string PolicyNo { get; set; }
-        public string CardId { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string PolicyNumber { get; set; }
+        [Required]
+        [StringLength(13)]
+        public string IdentityNumber { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string InsuredTitle { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string InsuredFirstName { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string InsuredLastName { get; set; }
     }
 }

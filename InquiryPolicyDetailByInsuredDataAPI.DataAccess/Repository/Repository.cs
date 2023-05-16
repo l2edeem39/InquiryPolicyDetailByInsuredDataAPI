@@ -30,13 +30,17 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
 
             return result;
         }
-        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolNo, string CardId)
+        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolicyNumber, string IdentityNumber, string InsuredTitle, string InsuredFirstName, string InsuredLastName)
         {
-            var paramPolNo = new SqlParameter("@policyno", PolNo);
-            var paramCardId = new SqlParameter("@cardid", CardId);
+            var paramPolicyNumber = new SqlParameter("@PolicyNumber", PolicyNumber);
+            var paramIdentityNumber = new SqlParameter("@IdentityNumber", IdentityNumber);
+            var paramInsuredTitle = new SqlParameter("@InsuredTitle", InsuredTitle);
+            var paramInsuredFirstName = new SqlParameter("@IdentityNumber", InsuredFirstName);
+            var paramInsuredLastName = new SqlParameter("@IdentityNumber", InsuredLastName);
             var result = await Task.Run(() => _dbContext.PolicyDetailByInsuredData
-                            .FromSqlRaw(@"exec sp_TPA_VIB @policyno, @cardid", paramPolNo, paramCardId).ToListAsync());
-            
+                            .FromSqlRaw(@"exec sp_TPA_VIB @PolicyNumber, @IdentityNumber, @InsuredTitle, @InsuredFirstName, @InsuredLastName", paramPolicyNumber, paramIdentityNumber, paramInsuredTitle, paramInsuredFirstName, paramInsuredLastName)
+                            .ToListAsync());
+
             return result;
         }
         public bool GetCredentialAsync(string user, string password)

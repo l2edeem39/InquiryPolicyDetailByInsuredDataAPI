@@ -8,103 +8,150 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 {
     public class PolicyDetailByInsuredData
     {
-		public string CompanyName {get; set;}
-		public string MemberCode {get; set;}
-		public string Title {get; set;}
-		public string NameThai {get; set;}
-		public string SurnameThai {get; set;}
-		public string NameEng {get; set;}
-		public string SurnameEng {get; set;}
-		public string MemberType {get; set;}
-		public string PrincipleReferenceNumber {get; set;}
-		public string Gender {get; set;}
-		public string MaritalStatus {get; set;}
-		public string Nationality {get; set;}
-		public string CitizenId {get; set;}
-		public string OtherId {get; set;}
-		public string DateOfBirth {get; set;}
-		public int Age { get; set; }
-		public string  BuildingNo {get; set;}
-		public string VillageNo {get; set;}
-		public string LaneAlley {get; set;}
-		public string Road {get; set;}
-		public string SubDistrict {get; set;}
-		public string District {get; set;}
-		public string Province {get; set;}
-		public string PostCode {get; set;}
-		public string Country {get; set;}
-		public string ContactPersonName {get; set;}
-		public string OfficeTelNo {get; set;}
-		public string HomeTelNo {get; set;}
-		public string MobileNo {get; set;}
-		public string Email {get; set;}
-		public string FaxNo {get; set;}
-		public string StaffNo {get; set;}
-		public string JoinDate {get; set;}
-		public string EmploymentDate {get; set;}
-		public string PolicyNumber {get; set;}
-		public string ApplicationNumber {get; set;}
-		public string CertificateNo {get; set;}
-		public string InsurerCardNo {get; set;}
-		public string InsurerPreviousCardNo {get; set;}
-		public string PolicyYear {get; set;}
-		public string LifePolicyIssueDate {get; set;}
-		public string LifePolicyValidityDate {get; set;}
-		public string LifePolicyContractDate {get; set;}
-		public string Plan {get; set;}
-		public string PlanIssueDate {get; set;}
-		public string PlanContractDate {get; set;}
-		public string PlanEffectiveFromDate {get; set;}
-		public string PlanEffectiveToDate {get; set;}
-		public string PlanPaidDate {get; set;}
-		public string PlanPaidToDate {get; set;}
-		public string PlanNextDueDate {get; set;}
-		public string PlanTerminateDate {get; set;}
-		public string PlanReinstatementDate {get; set;}
-		public string PlanSuspensionDate {get; set;}
-		public string PlanSuspensionToDate {get; set;}
-		public string Rider {get; set;}
-		public string RiderIssueDate {get; set;}
-		public string RiderContractDate {get; set;}
-		public string RiderEffectiveFromDate {get; set;}
-		public string RiderEffectiveToDate {get; set;}
-		public string RiderPaidDate {get; set;}
-		public string RiderPaidToDate {get; set;}
-		public string RiderNextDueDate {get; set;}
-		public string RiderTerminateDate {get; set;}
-		public string RiderReinstatementDate {get; set;}
-		public string RiderSuspensionDate {get; set;}
-		public string ConditionDetail { get; set; }
-		public string BankCode {get; set;}
-		public string BankAccountNo {get; set;}
-		public string PayeeName {get; set;}
-		public string PayeeCitizenId {get; set;}
-		public string Bu {get; set;}
-		public string Branch {get; set;}
-		public string CostCenter {get; set;}
-		public string AgentCode {get; set;}
-		public string AgentLeaderCode {get; set;}
-		public string Broker {get; set;}
-		public string Vip {get; set;}
-		public string PremiumFrequency {get; set;}
-		public double MemberPremium { get; set; }
-		public string  PremiumIpd {get; set;}
-		public string PremiumOpd {get; set;}
-		public double SumInsured { get; set; }
-		public string SocialSecurityHospital {get; set;}
-		public string Remark1 {get; set;}
-		public string Remark2 {get; set;}
-		public string Remark3 {get; set;}
-		public string Remark4 {get; set;}
-		public string Remark5 {get; set;}
-		public string Remark6 {get; set;}
-		public string Remark7 {get; set;}
-		public string Remark8 {get; set;}
-		public string Remark9 {get; set;}
-		public string Remark10 {get; set;}
-		public string Transtype {get; set;}
-		public string Reason {get; set;}
-		public int IsEndorse { get; set; }
-		public DateTime CreateDate { get; set; }
+		public decimal SEQUENCE {get; set;}
+		public string COMPANY_NAME {get; set;}
+		public string MEMBER_STATUS {get; set;}
+		public string TITLE { get; set;}
+		public string NAME_THAI {get; set;}
+		public string SURNAME_THAI {get; set;}
+		public string NAME_ENG { get; set; }
+		public string SURNAME_ENG { get; set; }
+		public string GENDER { get; set; }
+		public string MARITAL_STATUS { get; set; }
+		public string NATIONALITY { get; set; }
+		public string MEMBER_TYPE { get; set; }
+		public string PRINCIPLE_REFERENCE_NUMBER { get; set; }
+		public string PRINCIPLE_REFERENCE_FIELD_NAME { get; set; }
+		public string CITIZEN_ID { get; set; }
+		public string OTHER_ID { get; set; }
+		public DateTime DATE_OF_BIRTH { get; set; }
+		public string AGE { get; set; }
+		public string BUILDING_NO { get; set; }
+		public string VILLAGE_NO { get; set; }
+		public string LANE_ALLEY { get; set; }
+		public string ROAD { get; set; }
+		public string SUB_DISTRICT { get; set; }
+		public string DISTRICT { get; set; }
+		public string PROVINCE { get; set; }
+		public string POST_CODE { get; set; }
+		public string COUNTRY { get; set; }
+		public string CONTACT_PERSON_NAME { get; set; }
+		public string OFFICE_TEL_NO { get; set; }
+		public string HOME_TEL_NO { get; set; }
+		public string MOBILE_NO { get; set; }
+		public string EMAIL { get; set; }
+		public string FAX_NO { get; set; }
+		public string STAFF_NO { get; set; }
+		public DateTime JOIN_DATE { get; set; }
+		public DateTime EMPLOYMENT_DATE { get; set; }
+		public string APPLICATION_NUMBER { get; set; }
+		public string POLICY_NUMBER { get; set; }
+		public string Previous_POLICY_NUMBER { get; set; }
+		public decimal POLICY_YEAR { get; set; }
+		public DateTime POLICY_ISSUE_Date { get; set; }
+		public DateTime POLICY_EXPIRED_DATE { get; set; }
+		public string POLICY_STATUS { get; set; }
+		public DateTime RENEWAL_DATE { get; set; }
+		public string CERTIFICATE_NO { get; set; }
+		public string INSURER_CARD_NO {get; set;}
+		public string INSURER_PREVIOUS_CARD_NO { get; set; }
+		public DateTime Member_Terminate_Date { get; set; }
+		public DateTime Member_Reinstatement_Date { get; set; }
+		public DateTime Member_Suspension_Date { get; set; }
+		public DateTime Member_Suspension_To_Date { get; set; }
+		public string PLAN { get; set; }
+		public DateTime PLAN_ISSUE_DATE { get; set; }
+		public DateTime PLAN_CONTRACT_DATE { get; set; }
+		public DateTime PLAN_EFFECTIVE_FROM_DATE { get; set; }
+		public DateTime PLAN_EFFECTIVE_TO_DATE { get; set; }
+		public DateTime PLAN_PAID_DATE { get; set; }
+		public DateTime PLAN_Paid_to_date { get; set; }
+		public DateTime PLAN_Next_Due_Date { get; set; }
+		public string PLAN_Status { get; set; }
+		public string PLAN_RIDER { get; set; }
+		public DateTime RIDER_ISSUE_DATE { get; set; }
+		public DateTime RIDER_CONTRACT_DATE { get; set; }
+		public DateTime RIDER_EFFECTIVE_FROM_DATE { get; set; }
+		public DateTime RIDER_EFFECTIVE_TO_DATE { get; set; }
+		public DateTime RIDER_Terminate_Date { get; set; }
+		public DateTime RIDER_Reinstatement_Date { get; set; }
+		public DateTime Rider_Suspension_Date { get; set; }
+		public DateTime RIDER_PAID_DATE { get; set; }
+		public DateTime RIDER_Paid_to_date { get; set; }
+		public DateTime RIDER_Next_Due_Date { get; set; }
+		public string RIDER_Status { get; set; }
+		public DateTime LIFE_CONTRACT_DATE { get; set; }
+		public DateTime VALIDITY_DATE { get; set; }
+		public string CONDITION_DETAIL { get; set; }
+		public string PREMIUM_FREQUENCY { get; set; }
+		public decimal MEMBER_PREMIUM { get; set; }
+		public decimal PREMIUM_IPD { get; set; }
+		public decimal PREMIUM_OPD { get; set; }
+		public decimal Sum_Insured { get; set; }
+		public string SOCIAL_SECURITY_HOSPITAL { get; set; }
+		public string BANK { get; set; }
+		public string BANK_ACCOUNT_NO { get; set; }
+		public string PAYEE_NAME { get; set; }
+		public string Payee_Citizen_ID { get; set; }
+		public string BU { get; set; }
+		public string BRANCH { get; set; }
+		public string COST_CENTER { get; set; }
+		public string AGENT_CODE { get; set; }
+		public string AGENT_LEADER_CODE { get; set; }
+		public string REMARK_1 { get; set; }
+		public string REMARK_2 { get; set; }
+		public string REMARK_3 { get; set; }
+		public string REMARK_4 { get; set; }
+		public string REMARK_5 { get; set; }
+		public string REMARK_6 { get; set; }
+		public string REMARK_7 { get; set; }
+		public string REMARK_8 { get; set; }
+		public string REMARK_9 { get; set; }
+		public string REMARK_10 { get; set; }
+		public string Insurer_Action_Type { get; set; }
+		public DateTime Insurer_Update_Date { get; set; }
+		public DateTime Cancel_Date { get; set; }
+		public string PATTERN_CODE { get; set; }
+		public string Sponsor { get; set; }
+		public string Reason { get; set; }
+		public string VIP { get; set; }
+		public string Broker { get; set; }
+		public string CustomerGroup { get; set; }
+		public string VDBNO { get; set; }
+		public DateTime Insurer_Export_Date { get; set; }
+		public string Sub_Sales_Chanel { get; set; }
+		public string ENDORSE_NO { get; set; }
+		public string END_TYPE { get; set; }
+		public string FLEET_SEQ { get; set; }
+		public string FAM_SEQ { get; set; }
+		public string SUB_SEQ { get; set; }
+		public string UNIQUE_NO { get; set; }
+		public string STS_FLAG { get; set; }
+		public string CANCEL_FLAG { get; set; }
+		public string Product_Code { get; set; }
+		public string Product_Type { get; set; }
+		public string Coverage_Option { get; set; }
+		public string Progressive_Code { get; set; }
+		public string Coverage_Status { get; set; }
+		public DateTime Date_of_Birth_Payer { get; set; }
+		public string Gender_Payer { get; set; }
+		public string Address1_Payer { get; set; }
+		public string Address2_Payer { get; set; }
+		public string Address3_Payer { get; set; }
+		public string Address4_Payer { get; set; }
+		public string Address5_Payer { get; set; }
+		public string Address6_Payer { get; set; }
+		public string Campaign_code { get; set; }
+		public string Product_code_type { get; set; }
+		public string Rate_Scale { get; set; }
+		public string Coverage_Code { get; set; }
+		public string CVR { get; set; }
+		public string Claim_Type { get; set; }
+		public string Payment_Status { get; set; }
+		public string Member_Code { get; set; }
+		public string TransType { get; set; }
+		public string Old_Member_Code { get; set; }
+		public string Card_Type { get; set; }
+		public string Preferred_Language { get; set; }
 	}
 }
