@@ -30,15 +30,14 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
 
             return result;
         }
-        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolicyNumber, string IdentityNumber, string InsuredTitle, string InsuredFirstName, string InsuredLastName)
+        public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolicyNumber, string IdentityNumber, string InsuredFirstName, string InsuredLastName)
         {
             var paramPolicyNumber = new SqlParameter("@PolicyNumber", PolicyNumber);
             var paramIdentityNumber = new SqlParameter("@IdentityNumber", IdentityNumber);
-            var paramInsuredTitle = new SqlParameter("@InsuredTitle", InsuredTitle);
-            var paramInsuredFirstName = new SqlParameter("@IdentityNumber", InsuredFirstName);
-            var paramInsuredLastName = new SqlParameter("@IdentityNumber", InsuredLastName);
+            var paramInsuredFirstName = new SqlParameter("@InsuredFirstName", InsuredFirstName);
+            var paramInsuredLastName = new SqlParameter("@InsuredLastName", InsuredLastName);
             var result = await Task.Run(() => _dbContext.PolicyDetailByInsuredData
-                            .FromSqlRaw(@"exec sp_TPA_VIB @PolicyNumber, @IdentityNumber, @InsuredTitle, @InsuredFirstName, @InsuredLastName", paramPolicyNumber, paramIdentityNumber, paramInsuredTitle, paramInsuredFirstName, paramInsuredLastName)
+                            .FromSqlRaw(@"exec sp_TPA_VIB @PolicyNumber, @IdentityNumber, @InsuredFirstName, @InsuredLastName", paramPolicyNumber, paramIdentityNumber, paramInsuredFirstName, paramInsuredLastName)
                             .ToListAsync());
 
             return result;

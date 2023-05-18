@@ -12,9 +12,6 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Models
         public string IdentityNumber { get; set; }
         [Required]
         [StringLength(20)]
-        public string InsuredTitle { get; set; }
-        [Required]
-        [StringLength(20)]
         public string InsuredFirstName { get; set; }
         [Required]
         [StringLength(20)]
