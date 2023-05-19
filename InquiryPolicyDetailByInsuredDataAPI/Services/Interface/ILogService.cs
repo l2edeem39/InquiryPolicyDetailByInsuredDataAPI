@@ -9,7 +9,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services.Interface
 {
     public interface ILogService
     {
-        public void WriteLog<T>(LogEnum.Level level, T requestData, ResponseModel response, int status_code, string controller, string action);
-        public void WriteLogError<T>(T requestData, ResponseModel response, Exception ex, int status_code, string controller, string action);
+        public void WriteLog<T>(T requestData, string uuid, string policyNumber);
+        public void WriteLogUpdate<T>(T response, string uuid);
+        public void WriteLogDetail(string refId, string eventAction, string status, string eventMsg);
     }
 }

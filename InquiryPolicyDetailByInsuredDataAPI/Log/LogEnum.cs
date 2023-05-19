@@ -31,5 +31,10 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Log
             public const string Field_NotFound = "Field Not Found";
             public const string Unauthorized = "Unauthorized : UserName or Password is invalid.";
         }
+        public class Message
+        {
+            public const string GetPolicyDetail = "GetPolicyDetailByInsuredDataAsync";
+            public const string Msg_GetPolicyDetail = "Get Data Policy Detail By Insured";
+        }
     }
 }

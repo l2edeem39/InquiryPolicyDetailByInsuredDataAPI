@@ -5,6 +5,7 @@ using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace InquiryPolicyDetailByInsuredDataAPI.Share.EnvironmentShared
@@ -51,6 +52,12 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Share.EnvironmentShared
         public static string GetApplicationName()
         {
             return _webHostEnvironment.ApplicationName;
+        }
+        public static string GetIpAddress()
+        {
+            IPHostEntry ip = Dns.GetHostEntry(Dns.GetHostName());
+            var ipAddress = ip.AddressList[0].ToString().Length > 15 ? ip.AddressList[1].ToString() : ip.AddressList[0].ToString();
+            return ipAddress.Length > 15 ? string.Empty : ipAddress; 
         }
     }
 }

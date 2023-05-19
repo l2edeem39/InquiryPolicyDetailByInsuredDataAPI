@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
@@ -13,22 +12,11 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
     public class Repository : IRepository
     {
         private readonly DbContextClass _dbContext;
-        public Repository(DbContextClass dbContext)
+        private readonly DbContextLogin _dbContextLogin;
+        public Repository(DbContextClass dbContext, DbContextLogin dbContextLogin)
         {
             _dbContext = dbContext;
-        }
-        public async Task<List<ProductFch>> GetCarcolorCodeListAsync()
-        {
-            return await _dbContext.ProductFch.ToListAsync();
-        }
-        public async Task<IEnumerable<InsuredData>> GetProductByIdAsync(int InsuredDataId)
-        {
-            var param = new SqlParameter("@InsuredDataId", InsuredDataId);
-
-            var result = await Task.Run(() => _dbContext.InsuredData
-                            .FromSqlRaw(@"exec InsuredDataByID @InsuredDataId", param).ToListAsync());
-
-            return result;
+            _dbContextLogin = dbContextLogin;
         }
         public async Task<List<PolicyDetailByInsuredData>> GetPolicyDetailByInsuredDataAsync(string PolicyNumber, string IdentityNumber, string InsuredFirstName, string InsuredLastName)
         {
@@ -44,26 +32,55 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
         }
         public bool GetCredentialAsync(string user, string password)
         {
-            //var result = _dbContext.User.Where(x => x.UserName.Trim().ToString() == user.Trim().ToString() && x.Password.Trim().ToString() == password.Trim().ToString()).ToList();
-            var result = new List<User>()
-            {
-                new User()
-                {
-                    UserName = "usertest",
-                    Password = "123456"
-                }
-            };
+            var result = _dbContextLogin.UserLogin
+                .Where(x => x.Username.Trim() == user.Trim() && x.Password.Trim() == password.Trim() && x.IsActive == true)
+                .ToList();
 
-            result = result.Where(x => x.UserName.Trim().ToString() == user.Trim().ToString() && x.Password.Trim().ToString() == password.Trim().ToString()).ToList();
+            return result.Count > 0 ? true : false;
+        }
+        public int GetSequenceLogDeatilAsync(string uuid)
+        {
+            var result = _dbContextLogin.LogDetail
+                .Where(x => x.Log_Id.ToString() == uuid)
+                .ToList();
 
-            if (result.Count > 0)
+            return result.Count > 0 ? result.Max(x => x.Sequence) : 0;
+        }
+
+        public async Task<int> UpdateLog(string uuid,string msg)
+        {
+            var data = _dbContextLogin.Log.FirstOrDefault(a => a.Id == Guid.Parse(uuid));
+            data.Response = msg;
+            return await _dbContextLogin.SaveChangesAsync();
+        }
+        public async Task<int> InsertLog(string Id, string IPaddress, string ApiOperation, string ReferenceCode, string PolicyNumber, string Request)
+        {
+            _dbContextLogin.Log.Add(new Log()
             {
-                return true;
-            }
-            else
+                Id = Guid.Parse(Id),
+                IPaddress = IPaddress,
+                ApiOperation = ApiOperation,
+                CreateDate = DateTime.Now,
+                ReferenceCode = ReferenceCode,
+                PolicyNumber = PolicyNumber,
+                Request = Request
+            });
+            return await _dbContextLogin.SaveChangesAsync();
+        }
+        public async Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message)
+        {
+            var sequence = GetSequenceLogDeatilAsync(Id) + 1;
+            _dbContextLogin.LogDetail.Add(new LogDetail()
             {
-                return false;
-            }
+                Id = new Guid(),
+                Sequence = sequence,
+                Event = Event,
+                StatusCode = StatusCode,
+                Message = Message,
+                CreateDate = DateTime.Now,
+                Log_Id = Guid.Parse(Id)
+            });
+            return await _dbContextLogin.SaveChangesAsync();
         }
     }
 }

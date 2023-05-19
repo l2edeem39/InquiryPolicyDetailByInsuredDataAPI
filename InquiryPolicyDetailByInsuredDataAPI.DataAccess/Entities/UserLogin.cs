@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Entities
 {
-    public class User
+    public class UserLogin
     {
-        public string UserName { get; set; }
+        public Guid Id { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
+        public bool IsActive { get; set; }
+        public string CreateBy { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

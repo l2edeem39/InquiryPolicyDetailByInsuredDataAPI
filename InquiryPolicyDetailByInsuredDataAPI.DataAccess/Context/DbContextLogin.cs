@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context
 {
-    public class DbContextClass : DbContext
+    public class DbContextLogin : DbContext
     {
         //public DbContextClass(DbContextOptions<DbContextClass> options)
         //    : base(options)
@@ -13,20 +13,24 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context
 
         protected readonly IConfiguration Configuration;
 
-        public DbContextClass(IConfiguration configuration)
+        public DbContextLogin(IConfiguration configuration)
         {
             Configuration = configuration;
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString("r4ad01"));
+            options.UseSqlServer(Configuration.GetConnectionString("DbLocal"));
         }
 
-        public DbSet<PolicyDetailByInsuredData> PolicyDetailByInsuredData { get; set; }
+        public DbSet<UserLogin> UserLogin { get; set; }
+        public DbSet<LogDetail> LogDetail { get; set; }
+        public DbSet<Log> Log { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PolicyDetailByInsuredData>(entity => entity.HasNoKey());
+            modelBuilder.Entity<UserLogin>().HasKey(o => o.Id);
+            modelBuilder.Entity<LogDetail>().HasKey(o => o.Id);
+            modelBuilder.Entity<Log>().HasKey(o => o.Id);
         }
     }
 }
