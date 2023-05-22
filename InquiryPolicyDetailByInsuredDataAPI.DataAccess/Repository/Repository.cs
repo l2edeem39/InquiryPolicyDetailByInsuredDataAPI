@@ -59,7 +59,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
                 PolicyNumber = PolicyNumber,
                 Request = Request
             });
-            return await _dbContextLogin.SaveChangesAsync();
+            return _dbContextLogin.SaveChanges();
         }
         public async Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message)
         {
@@ -74,13 +74,13 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
                 CreateDate = DateTime.Now,
                 Log_Id = Guid.Parse(Id)
             });
-            return await _dbContextLogin.SaveChangesAsync();
+            return _dbContextLogin.SaveChanges();
         }
         public async Task<int> UpdateLog(string uuid, string msg)
         {
             var data = _dbContextLogin.Log.FirstOrDefault(a => a.Id == Guid.Parse(uuid));
             data.Response = msg;
-            return await _dbContextLogin.SaveChangesAsync();
+            return _dbContextLogin.SaveChanges();
         }
     }
 }
