@@ -35,8 +35,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IInquiryPolicyDetailService, InquiryPolicyDetailService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddDbContext<DbContextClass>();
-            services.AddDbContext<DbContextLogin>();
+            services.AddDbContext<DbContextClass>(ServiceLifetime.Transient);
+            services.AddDbContext<DbContextLogin>(ServiceLifetime.Transient);
 
             #region Configure Swagger  
             services.AddSwaggerGen(c =>
