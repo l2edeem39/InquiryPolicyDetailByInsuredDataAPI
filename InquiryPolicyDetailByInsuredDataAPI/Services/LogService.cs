@@ -168,7 +168,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
 
             await Insert(log);
         }
-        public async void WriteLogUpdate<T>(T response, string uuid)
+        public async void WriteLogUpdateResponse<T>(T response, string uuid)
         {
             requestDate = DateTime.Now;
             var log = new LogUpdateModel

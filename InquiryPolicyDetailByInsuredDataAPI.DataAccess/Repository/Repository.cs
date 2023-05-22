@@ -47,12 +47,6 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
             return result.Count > 0 ? result.Max(x => x.Sequence) : 0;
         }
 
-        public async Task<int> UpdateLog(string uuid,string msg)
-        {
-            var data = _dbContextLogin.Log.FirstOrDefault(a => a.Id == Guid.Parse(uuid));
-            data.Response = msg;
-            return await _dbContextLogin.SaveChangesAsync();
-        }
         public async Task<int> InsertLog(string Id, string IPaddress, string ApiOperation, string ReferenceCode, string PolicyNumber, string Request)
         {
             _dbContextLogin.Log.Add(new Log()
@@ -80,6 +74,12 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
                 CreateDate = DateTime.Now,
                 Log_Id = Guid.Parse(Id)
             });
+            return await _dbContextLogin.SaveChangesAsync();
+        }
+        public async Task<int> UpdateLog(string uuid, string msg)
+        {
+            var data = _dbContextLogin.Log.FirstOrDefault(a => a.Id == Guid.Parse(uuid));
+            data.Response = msg;
             return await _dbContextLogin.SaveChangesAsync();
         }
     }

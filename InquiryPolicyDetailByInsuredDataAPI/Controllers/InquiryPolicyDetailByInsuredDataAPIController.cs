@@ -57,14 +57,14 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Controllers
                 #endregion
 
                 response.StatusCode = StatusCodes.Success;
-                _logService.WriteLogUpdate(response, uuidAsString);
+                _logService.WriteLogUpdateResponse(response, uuidAsString);
                 return StatusCode(StatusCodes.Success, new { response, data = result });
             }
             catch(Exception ex)
             {
                 response.ErrorMessage = ex.Message;
                 response.StatusCode = StatusCodes.Error;
-                _logService.WriteLogUpdate(response, uuidAsString);
+                _logService.WriteLogUpdateResponse(response, uuidAsString);
                 return StatusCode(StatusCodes.Error, new { response, data = new List<PolicyDetailByInsuredData>() });
             }
         }
