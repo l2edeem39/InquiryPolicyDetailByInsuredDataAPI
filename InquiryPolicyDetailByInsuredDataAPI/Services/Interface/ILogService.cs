@@ -11,6 +11,6 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services.Interface
     {
         public void WriteLog<T>(T requestData, string uuid, string policyNumber);
         public void WriteLogUpdateResponse<T>(T response, string uuid);
-        public void WriteLogDetail(string refId, string eventAction, string status, string eventMsg);
+        public void WriteLogDetail(string refId, string eventAction, string status, string eventMsg, int sequence);
     }
 }

@@ -114,7 +114,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             int result = 0;
             try
             {
-                result = await _repo.InsertLogDetail(model.LogId, model.Event, model.StatusCode, model.Message);
+                result = await _repo.InsertLogDetail(model.LogId, model.Event, model.StatusCode, model.Message, model.Sequence);
                 //model.Sequence = _repo.GetSequenceLogDeatilAsync(model.LogId) + 1;
                 //string sql = @"Insert into [LogDetail]
                 //                  ([Id]
@@ -178,7 +178,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
             };
             await UpdateLog(log);
         }
-        public async void WriteLogDetail(string refId, string eventAction, string status, string eventMsg)
+        public async void WriteLogDetail(string refId, string eventAction, string status, string eventMsg, int Sequence)
         {
             requestDate = DateTime.Now;
             var log = new LogDetailModel
@@ -187,7 +187,8 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Services
                 StatusCode = status,
                 Message = eventMsg,
                 CreateDate = requestDate,
-                LogId = refId
+                LogId = refId,
+                Sequence = Sequence
             };
             await InsertLogDetail(log);
         }

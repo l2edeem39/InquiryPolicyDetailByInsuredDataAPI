@@ -53,7 +53,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Controllers
                 {
                     status = "1";
                 }
-                _logService.WriteLogDetail(uuidAsString, Message.GetPolicyDetail, status, Message.Msg_GetPolicyDetail);
+                _logService.WriteLogDetail(uuidAsString, Message.GetPolicyDetail, status, Message.Msg_GetPolicyDetail, Sequence.First);
                 #endregion
 
                 response.StatusCode = StatusCodes.Success;

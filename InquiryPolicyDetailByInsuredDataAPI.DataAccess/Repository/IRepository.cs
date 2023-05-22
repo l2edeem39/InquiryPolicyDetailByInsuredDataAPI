@@ -11,7 +11,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
         public bool GetCredentialAsync(string user, string password);
         public int GetSequenceLogDeatilAsync(string uuid);
         public Task<int> InsertLog(string Id, string IPaddress, string ApiOperation, string ReferenceCode, string PolicyNumber, string Request);
-        public Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message);
+        public Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message, int Sequence);
         public Task<int> UpdateLog(string uuid, string msg);
     }
     

@@ -11,6 +11,10 @@ namespace InquiryPolicyDetailByInsuredDataAPI.Log
         {
             Information, Warnning, Error, Success
         }
+        public class Sequence
+        {
+            public const int First = 1;
+        }
         public class StatusCodes
         {
             public const int Success = 200;

@@ -19,7 +19,7 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString("DbLocal"));
+            options.UseSqlServer(Configuration.GetConnectionString("HQCDBAPIDEV"));
         }
 
         public DbSet<UserLogin> UserLogin { get; set; }

@@ -61,13 +61,13 @@ namespace InquiryPolicyDetailByInsuredDataAPI.DataAccess.Repository
             });
             return _dbContextLogin.SaveChanges();
         }
-        public async Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message)
+        public async Task<int> InsertLogDetail(string Id, string Event, string StatusCode, string Message, int Sequence)
         {
-            var sequence = GetSequenceLogDeatilAsync(Id) + 1;
+            //var sequence = GetSequenceLogDeatilAsync(Id) + 1;
             _dbContextLogin.LogDetail.Add(new LogDetail()
             {
                 Id = new Guid(),
-                Sequence = sequence,
+                Sequence = Sequence,
                 Event = Event,
                 StatusCode = StatusCode,
                 Message = Message,
